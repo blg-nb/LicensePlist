@@ -43,10 +43,15 @@ struct LicensePlistHolder {
             guard !licenses.isEmpty else { return [] }
             let body = licenses
                 .compactMap { lincense in
-                    return ["Type": "PSGroupSpecifier",
-                            "Title": lincense.name(withVersion: options.config.addVersionNumbers),
-                            "FooterText": lincense.body
-                            ]
+                    return [
+                        "Title": lincense.name,
+                        "Version": lincense.version ?? String(),
+                        "Type": lincense.body.components(separatedBy: CharacterSet.newlines).first?
+                            .trimmingCharacters(in: .whitespacesAndNewlines)
+                            .replacingOccurrences(of: ",", with: "") ?? String(),
+                        "Text": lincense.body,
+                        "RepositoryURL": lincense.repositoryURL
+                    ]
                 }
             return body
         }()

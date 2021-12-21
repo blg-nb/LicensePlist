@@ -4,6 +4,7 @@ import LoggerAPI
 public struct ManualLicense: License, Equatable {
     public let library: Manual
     public let body: String
+    public var repositoryURL: String
 
     public static func==(lhs: ManualLicense, rhs: ManualLicense) -> Bool {
         return lhs.library == rhs.library &&
@@ -25,7 +26,7 @@ extension ManualLicense: CustomStringConvertible {
 extension ManualLicense {
     public static func load(_ manuals: [Manual]) -> [ManualLicense] {
         return manuals.map {
-            return ManualLicense(library: $0, body: $0.body ?? "")
+            return ManualLicense(library: $0, body: $0.body ?? "", repositoryURL: String())
         }
     }
 }

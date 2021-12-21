@@ -4,6 +4,7 @@ import LoggerAPI
 public struct CocoaPodsLicense: License, Equatable {
     public let library: CocoaPods
     public let body: String
+    public var repositoryURL: String
 
     public static func==(lhs: CocoaPodsLicense, rhs: CocoaPodsLicense) -> Bool {
         return lhs.library == rhs.library &&
@@ -30,7 +31,8 @@ extension CocoaPodsLicense {
                     return CocoaPodsLicense(library: CocoaPods(name: name,
                                                                nameSpecified: config.renames[name],
                                                                version: versionInfo.version(name: $0.title)),
-                                            body: $0.footerText)
+                                            body: $0.footerText,
+                                            repositoryURL: String())
             }
         } catch let e {
             Log.error(String(describing: e))

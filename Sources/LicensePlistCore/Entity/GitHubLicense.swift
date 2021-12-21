@@ -4,6 +4,7 @@ import APIKit
 public struct GitHubLicense: License, Equatable {
     public let library: GitHub
     public let body: String
+    public var repositoryURL: String
     let githubResponse: LicenseResponse
 
     public static func==(lhs: GitHubLicense, rhs: GitHubLicense) -> Bool {
@@ -56,6 +57,7 @@ extension GitHubLicense {
             case .success(let response):
                 let license = GitHubLicense(library: library,
                                             body: response.contentDecoded,
+                                            repositoryURL: "https://github.com/\(library.owner)/\(library.name)",
                                             githubResponse: response)
                 return Result.success(license)
             }

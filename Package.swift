@@ -38,12 +38,12 @@ let package = Package(
                 "Yaml",
             ]
         ),
-        .testTarget(
-            name: "LicensePlistTests",
-            dependencies: ["LicensePlistCore"],
-            exclude: [
-                "XcodeProjects",
-            ]
-        ),
+//        .testTarget(
+//            name: "LicensePlistTests",
+//            dependencies: ["LicensePlistCore"],
+//            exclude: [
+//                "XcodeProjects",
+//            ]
+//        ),
     ]
 )
