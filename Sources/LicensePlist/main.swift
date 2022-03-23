@@ -18,6 +18,8 @@ extension CompletionKind {
 
 // Typename used for usage in help command
 struct LicensePlist: ParsableCommand {
+    static let configuration = CommandConfiguration(version: Consts.version)
+
     @Option(name: .long, completion: .file())
     var cartfilePath = Consts.cartfileName
 
@@ -62,6 +64,9 @@ struct LicensePlist: ParsableCommand {
     var addVersionNumbers = false
 
     @Flag(name: .long)
+    var addSources = false
+
+    @Flag(name: .long)
     var suppressOpeningDirectory = false
 
     @Flag(name: .long)
@@ -78,6 +83,7 @@ struct LicensePlist: ParsableCommand {
         config.suppressOpeningDirectory = suppressOpeningDirectory
         config.singlePage = singlePage
         config.failIfMissingLicense = failIfMissingLicense
+        config.addSources = addSources
         let options = Options(outputPath: URL(fileURLWithPath: outputPath),
                               cartfilePath: URL(fileURLWithPath: cartfilePath),
                               mintfilePath: URL(fileURLWithPath: mintfilePath),

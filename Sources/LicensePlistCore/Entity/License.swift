@@ -5,6 +5,7 @@ import LoggerAPI
 public protocol LicenseInfo: HasName {
     var body: String { get }
     var version: String? { get }
+    var source: String? { get }
     var bodyEscaped: String { get }
     var repositoryURL: String { get }
 }
@@ -29,6 +30,7 @@ extension License {
     public var name: String { return library.name }
     public var nameSpecified: String? { return library.nameSpecified }
     public var version: String? { return library.version }
+    public var source: String? { return library.source }
     public var bodyEscaped: String {
         return body
             .replacingOccurrences(of: "&", with: "&amp;")

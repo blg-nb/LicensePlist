@@ -10,6 +10,9 @@
 [![Language: Swift 5.0](https://img.shields.io/badge/swift-5.0-4BC51D.svg?style=flat)](https://developer.apple.com/swift)
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
 
+[![Lint](https://github.com/mono0926/LicensePlist/actions/workflows/lint.yml/badge.svg)](https://github.com/mono0926/LicensePlist/actions/workflows/lint.yml)
+[![Test](https://github.com/mono0926/LicensePlist/actions/workflows/test.yml/badge.svg)](https://github.com/mono0926/LicensePlist/actions/workflows/test.yml)
+
 `LicensePlist` is a command-line tool that automatically generates a Plist of all your dependencies, including files added manually(specified by [YAML config file](https://github.com/mono0926/LicensePlist/blob/master/Tests/LicensePlistTests/Resources/license_plist.yml)) or using `Carthage` or `CocoaPods`. All these licenses then show up in the Settings app.
 
 ![Flow](Screenshots/flow.png)
@@ -110,7 +113,7 @@ You can see options by `license-plist --help`.
 - Default: `Package.swift`
 - `LicensePlist` tries to find `YourProjectName.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved` and `YourProjectName.xcworkspace/xcshareddata/swiftpm/Package.resolved`, then uses new one.
 
-### `--xcodeproj-path`
+#### `--xcodeproj-path`
 
 - Default: `"*.xcodeproj"`
 - By specifiying the path to the `.xcodeproj` `LicensePlist` will attempt to load the `Package.resolved` from that Xcode project. If you specify `somedir/*.xcodeproj` then `LicensePlist` will load from the first `xcodeproj` it finds in `somedir`.
@@ -170,6 +173,11 @@ You can see options by `license-plist --help`.
     - `X.Y.Z` is parsed from CocoaPods and Cartfile information, and GitHub libraries specified at [Config YAML](https://github.com/mono0926/LicensePlist/blob/master/Tests/LicensePlistTests/Resources/license_plist.yml) also support this flag.
 
 <img src="Screenshots/list_version.png" width="320" height="568" alt="License list with versions">
+
+#### `--add-sources`
+
+- Default: false
+- Adds the source of the library to the output if there is one. The source for GitHub and CocoaPods libraries is generated. Manual libraries use the optional source field.
 
 #### `--suppress-opening-directory`
 
